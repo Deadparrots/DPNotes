@@ -12,9 +12,9 @@ function CalcLastItem()
 	local item
 	for i = 1, 9 do
 		if SKIN:GetVariable('Item'..i):gsub("\r\n", "#*CRLF*#") ~= "" then
-			item = i 
+			item = i
 		end
-		SKIN:Bang('!SetOption Item'..(item)..' Padding #ActivePad#') -- Holy shit this was hard to figure out.
+		SKIN:Bang('!SetOption Item'..(item)..' Padding #ActivePad#')
 	end
 	SKIN:Bang('!SetVariable LastItem """'..item..'"""')
 	if SKIN:GetVariable('IsOpen') == "1"  then
