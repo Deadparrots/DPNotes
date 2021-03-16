@@ -1,7 +1,7 @@
 [Variables]
-Item1=To Watch List:#CRLF#- Psycho Pass S2E1#CRLF#- South Park S8E1#CRLF#- GOT S1E3#CRLF#- Tenka Hyakken E1#CRLF#- Babylon E1#CRLF#- Yuusha Yoshihiko E6
-Item2=Read List#CRLF#- 1632 Series#CRLF#- Axis of Time#CRLF#- Island in the Sea of Time#CRLF#- The Years of rice and Salt#CRLF#- Dread Nation#CRLF#- Making History (Stephen Fry)#CRLF#- 1984#CRLF#- Warlords of Utopia#CRLF#- Timeline-191#CRLF#- The Guns of the South#CRLF#- Roma Eterna#CRLF#- Crosstime Traffic (Turtledove)#CRLF#- Lest Darkness fall#CRLF#- Cast under an alien sun#CRLF#- Safehold#CRLF#- The Art of War
-Item3=RDR2 Huntlist#CRLF#- Panther#CRLF#- Boar#CRLF#- Iguna#CRLF#- Beaver
+Item1=
+Item2=
+Item3=
 Item4=
 Item5= 
 Item6=
