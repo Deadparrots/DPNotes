@@ -77,7 +77,6 @@ end
 function InitDelayed(n)
 		SKIN:Bang('!SetOption', 'Loop', 'Disabled', '"0"')
 	if n == 1 then
-		--SKIN:Bang('[!SetOption Loop "InvertMeasure" "([LoopState]=1 ? 0:1)"][!SetOption LoopState "Formula" "([LoopState]=1 ? 0:1)"] [!UpdateMeasure Loop]')
 		SKIN:Bang('[!SetVariable LoopPT "[*Loop*]*0.01"]')
 	end
 
