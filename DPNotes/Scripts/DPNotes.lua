@@ -14,14 +14,10 @@ function CalcLastItem()
 		if SKIN:GetVariable('Item'..i):gsub("\r\n", "#*CRLF*#") ~= "" then
 			item = i
 		end
-		SKIN:Bang('!SetOption Item'..(item)..' Padding #*ActivePad*#')
 	end
 	SKIN:Bang('!SetVariable LastItem """'..item..'"""')
-	if SKIN:GetVariable('IsOpen') == "1"  then
-		SKIN:Bang('!SetVariable LoopPT 1')
-        SKIN:Bang('[!SetOption Loop "InvertMeasure" "([LoopState]=1 ? 0:1)"][!SetOption LoopState "Formula" "([LoopState]=1 ? 0:1)"] [!UpdateMeasure Loop]')
-
-	end
+	SKIN:Bang('!SetVariable LoopPT '..(SKIN:GetVariable('IsOpen'))..'')
+	SKIN:Bang('!SetVariable LastItemPosition [*Item'..item..':YH*]')
 end
 
 function AddItem()
@@ -36,6 +32,7 @@ function AddItem()
 end
 
 function EditItemA(n)
+	SKIN:Bang('!Log  "'..n..'"')
 	SKIN:Bang('!SetVariable ItemOrig """'..SKIN:GetVariable('Item'..n):gsub("\n", "\r\n")..'"""')
 	SKIN:Bang('!CommandMeasure TextInput "ExecuteBatch 2"')
 end
@@ -46,6 +43,7 @@ function EditItemB(n)
 		SKIN:Bang('[!WriteKeyValue Variables Item'..n..' """'..input..'""" "#@#DPNotes.txt"][!Refresh]')
 	else
 		DeleteItem(n)
+		SKIN:Bang('[!Refresh]')
 	end
 end
 
@@ -74,10 +72,6 @@ function SwapItemDown(n)
 	end
 end
 
-function InitDelayed(n)
-		SKIN:Bang('!SetOption', 'Loop', 'Disabled', '"0"')
-	if n == 1 then
-		SKIN:Bang('[!SetVariable LoopPT "[*Loop*]*0.01"]')
-	end
-
+function ValidateLoopPT()
+		SKIN:Bang('!SetVariable LoopPT [*Loop*]*0.01 ')
 end
