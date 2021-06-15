@@ -1,20 +1,18 @@
 function Initialize()
-    if SKIN:GetVariable('Item10') ~= "" then
-		SKIN:Bang('!SetOption', 'Item0', 'MouseOverAction', '[!SetOption Item0 Text [StringLimit#Language#]][!SetOption Item0 SolidColor "160,0,0,255"][!UpdateMeter Item0][!Redraw]')
-		SKIN:Bang('!SetOption', 'Item0', 'MouseLeaveAction', '[!SetOption Item0 Text [StringInfo#Language#]][!SetOption Item0 SolidColor "#colorItems#"][!UpdateMeter Item0][!Redraw]')
-		SKIN:Bang('!DisableMouseAction Item0 "LeftMouseDoubleClickAction"')
-		SKIN:Bang('!SetOption Item0 LeftMouseUpAction ""')
-	end
-	CalcLastItem()
-end
+	local item = 0
 
-function CalcLastItem()
-	local item
-	for i = 1, 9 do
-		if SKIN:GetVariable('Item'..i):gsub("\r\n", "#*CRLF*#") ~= "" then
-			item = i
-		end
+	while(SKIN:GetVariable('Item'..(item + 1)):gsub("\r\n", "#*CRLF*#") ~= "") do
+		item = item + 1
 	end
+
+	if SKIN:GetMeter('Item'..item) == nil then
+		SKIN:Bang('[!Refresh]')
+		SKIN:Bang('!Log "Reloading to show new meters"')
+	elseif SKIN:GetMeter('Item'..(item + 1)) ~= nil then
+		SKIN:Bang('[!Refresh]')
+		SKIN:Bang('!Log "Reloading to remove old meters"')
+	end
+
 	SKIN:Bang('!SetVariable LastItem """'..item..'"""')
 	SKIN:Bang('!SetVariable LoopPT '..(SKIN:GetVariable('IsOpen'))..'')
 	SKIN:Bang('!SetVariable LastItemPosition [*Item'..item..':YH*]')
@@ -22,8 +20,9 @@ end
 
 function AddItem()
 	local input, crlf = SKIN:GetVariable('Item0'):gsub("\r\n", "#*CRLF*#")
+	local last = SKIN:GetVariable('LastItem')
 	if input ~= "" then
-		for i = 1, 9 do
+		for i = 1, (last + 1) do
 			SKIN:Bang('!WriteKeyValue Variables Item'..(i+1)..' """'..SKIN:GetVariable('Item'..i):gsub("\n", "#*CRLF*#")..'""" "#@#DPNotes.txt"')
 		end
 		SKIN:Bang('!WriteKeyValue Variables Item1 """'..input..'""" "#@#DPNotes.txt"')
@@ -47,28 +46,15 @@ function EditItemB(n)
 	end
 end
 
-function ClipItem(n)
-	SKIN:Bang('!SetClip "'..SKIN:GetVariable('Item'..n):gsub("\n", "\r\n")..'"')
-end
-
 function DeleteItem(n)
-	for i = n, 9 do
+	local last = SKIN:GetVariable('LastItem')
+
+	if SKIN:GetVariable('Item'..(last + 1)) == nil then
+		last = last - 1
+	end
+
+	for i = n, last do
 		SKIN:Bang('!WriteKeyValue Variables Item'..i..' """'..SKIN:GetVariable('Item'..(i+1)):gsub("\n", "#*CRLF*#")..'""" "#@#DPNotes.txt"')
-	end
-	SKIN:Bang('[!WriteKeyValue Variables Item10 "" "#@#DPNotes.txt"][!Refresh]')
-end
-
-function SwapItemUp(n)
-	if n ~= "1" then
-		SKIN:Bang('!WriteKeyValue Variables Item'..n..' """'..SKIN:GetVariable('Item'..(n-1)):gsub("\n", "#*CRLF*#")..'""" "#@#DPNotes.txt"')
-		SKIN:Bang('[!WriteKeyValue Variables Item'..(n-1)..' """'..SKIN:GetVariable('Item'..n):gsub("\n", "#*CRLF*#")..'""" "#@#DPNotes.txt"][!Refresh]')
-	end
-end
-
-function SwapItemDown(n)
-	if n ~= "10" and SKIN:GetVariable('Item'..(n+1)) ~= "" then
-		SKIN:Bang('!WriteKeyValue Variables Item'..n..' """'..SKIN:GetVariable('Item'..(n+1)):gsub("\n", "#*CRLF*#")..'""" "#@#DPNotes.txt"')
-		SKIN:Bang('[!WriteKeyValue Variables Item'..(n+1)..' """'..SKIN:GetVariable('Item'..n):gsub("\n", "#*CRLF*#")..'""" "#@#DPNotes.txt"][!Refresh]')
 	end
 end
 
