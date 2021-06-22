@@ -1,2 +1,0 @@
-#Removing inc files from being detected by linguist
-*.inc linguist-detectable
