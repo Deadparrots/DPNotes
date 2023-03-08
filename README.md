@@ -7,6 +7,7 @@ An Work in progress, this notepad currently features
 - Hotkeyed Hiding and Showing
 
 Not Guaranteed but planned improvements
+- Combining hotkeyed and buttoned skins
 - Settings Menu
 - Row shifting
 - Option for paging
