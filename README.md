@@ -6,7 +6,7 @@ An Work in progress, this notepad currently features
 - Infinite Rows
 - Hotkeyed Hiding and Showing
 
-Not Guranteed but planned improvements
+Not Guaranteed but planned improvements
 - Settings Menu
 - Row shifting
 - Option for paging
