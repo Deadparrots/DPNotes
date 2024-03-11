@@ -16,3 +16,14 @@ Planned improvements
 - Row shifting
 - Option for paging
 - Color Customisation
+
+Reference video
+
+https://github.com/Deadparrots/DPNotes/assets/42328797/f38558c6-e7f7-4799-838d-0efd3ca259db
+
+Other Skins / Programs used in this
+- Fences (top bar for sorting icons)
+- Mond (Clock)
+- Cleartext (Now Playing)
+- Start10 (Custom windows icon)
+- Wallpaper Engine
